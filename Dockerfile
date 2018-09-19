@@ -27,12 +27,12 @@ RUN conda install -c mingfeima mkldnn
 # Add LAPACK support for the GPU
 RUN conda install -c pytorch magma-cuda90
 
-RUN git clone --branch v0.4.1 --depth 1 https://github.com/pytorch/pytorch.git && \
-    cd pytorch && \
-    git submodule update --init && \
-    python setup.py install && \
-    cd .. && \
-    rm -rf pytorch
+RUN apt-get install -y build-essential
+
+RUN git clone --branch v0.4.1 --depth 1 https://github.com/pytorch/pytorch.git
+RUN cd pytorch && git submodule update --init
+RUN python setup.py install
+RUN cd .. && rm -rf pytorch
 
 COPY requirements.txt .
 RUN pip install -r requirements.txt

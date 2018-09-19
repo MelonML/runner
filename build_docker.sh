@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker build -t openautoml/runner .
+nvidia-docker build -t openautoml/runner .
