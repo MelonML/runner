@@ -1,4 +1,4 @@
-FROM nvidia/cuda:9.0-runtime
+FROM nvidia/cuda:9.0-cudnn7-runtime
 
 RUN apt-get update
 RUN apt-get install -y wget bzip2 ca-certificates
@@ -17,7 +17,7 @@ RUN pip install --upgrade pip
 RUN pip install https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.10.1-cp36-cp36m-linux_x86_64.whl
 
 
-RUN python -c "import tensorflow"
+#RUN python -c "import tensorflow"
 
 COPY requirements.txt .
 #RUN pip install -r requirements.txt
