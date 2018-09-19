@@ -1,1 +1,1 @@
-autokeras==0.2.14
+git+https://github.com/jhfjhfj1/autokeras.git@ba1a0a391462207cc67b02d66dcd03ed58ca8b72
