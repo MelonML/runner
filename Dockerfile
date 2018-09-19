@@ -18,6 +18,15 @@ RUN pip install https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_g
 
 RUN apt-get install -y git
 
+ENV CMAKE_PREFIX_PATH="$(dirname $(which conda))/../"
+
+# Install basic dependencies
+RUN conda install numpy pyyaml mkl mkl-include setuptools cmake cffi typing
+RUN conda install -c mingfeima mkldnn
+
+# Add LAPACK support for the GPU
+RUN conda install -c pytorch magma-cuda90
+
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
