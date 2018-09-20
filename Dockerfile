@@ -1,4 +1,5 @@
-FROM nvidia/cuda:9.0-cudnn7-runtime
+FROM nvidia/cuda:9.0-cudnn7-devel
+# we need -devel instead of -runtime because we are compiling pytorch ourself, so it will run on old GPUs
 
 RUN apt-get update
 RUN apt-get install -y wget bzip2 ca-certificates
@@ -31,8 +32,8 @@ RUN apt-get install -y build-essential
 
 RUN git clone --branch v0.4.1 --depth 1 https://github.com/pytorch/pytorch.git
 RUN cd pytorch && git submodule update --init
-RUN python setup.py install
-RUN cd .. && rm -rf pytorch
+RUN cd pytorch && python setup.py install
+RUN rm -rf pytorch
 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
