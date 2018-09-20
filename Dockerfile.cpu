@@ -1,0 +1,24 @@
+FROM ubuntu:16.04
+
+RUN apt-get update
+RUN apt-get install -y wget bzip2 ca-certificates
+RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh -O ~/anaconda.sh && \
+    /bin/bash ~/anaconda.sh -b -p /opt/conda && \
+    rm ~/anaconda.sh && \
+    ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
+    echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
+    echo "conda activate base" >> ~/.bashrc
+
+ENV PATH="/opt/conda/bin:${PATH}"
+
+RUN apt-get install -y git
+RUN pip install --upgrade pip
+
+RUN pip install https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.10.1-cp36-cp36m-linux_x86_64.whl
+
+WORKDIR /opt/openautoml/runner
+
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+COPY src/ src/
