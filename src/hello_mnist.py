@@ -2,6 +2,7 @@ from keras.datasets import mnist
 from autokeras.image_supervised import ImageClassifier
 from datetime import datetime
 
+
 def main():
     started = datetime.now()
     (x_train, y_train), (x_test, y_test) = mnist.load_data()
@@ -10,19 +11,19 @@ def main():
 
     clf = ImageClassifier(verbose=True, searcher_args={
         'trainer_args': {
-            'max_iter_num': 3,
+            'max_iter_num': 10,
         }
     })
     print(clf)
     # clf.fit(x_train, y_train, time_limit=12 * 60 * 60)
-    clf.fit(x_train, y_train, time_limit=10 * 60)
+    clf.fit(x_train, y_train, time_limit=60 * 60)
     # clf.final_fit(x_train, y_train, x_test, y_test, retrain=True)
     clf.final_fit(x_train, y_train, x_test, y_test, trainer_args={
-        'max_iter_num': 3,
+        'max_iter_num': 10,
     })
     y = clf.evaluate(x_test, y_test)
     print(y)
-    clf.load_searcher().load_best_model().produce_keras_model().save('my_model.h5')
+    clf.load_searcher().load_best_model().produce_keras_model().save('mnist_model.h5')
     finished = datetime.now() - started
     print(f'Total training duration: {finished}')
 
