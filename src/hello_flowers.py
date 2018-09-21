@@ -11,7 +11,7 @@ def main():
                                           images_path=DATA_PATH / 'flowers_one_dir' / 'train')
 
     x_test, y_test = load_image_dataset(csv_file_path=DATA_PATH / 'flowers_one_dir' / 'test' / 'labels.csv',
-                                        images_path=DATA_PATH / 'flowers_one_dir' / 'train')
+                                        images_path=DATA_PATH / 'flowers_one_dir' / 'test')
 
     clf = ImageClassifier(verbose=True, searcher_args={
         'trainer_args': {
