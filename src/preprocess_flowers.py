@@ -8,6 +8,8 @@ import shutil
 # TODO: keras.preprocessing.image.ImageDataGenerator.flow_from_directory(dir)
 # TODO: https://keras.io/preprocessing/image/
 
+# Data from https://www.kaggle.com/alxmamaev/flowers-recognition
+
 df_all_train = pd.DataFrame()
 df_all_test = pd.DataFrame()
 

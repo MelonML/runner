@@ -3,6 +3,8 @@ from datetime import datetime
 from autokeras.image_supervised import load_image_dataset
 from constants import DATA_PATH
 
+# Data from https://www.kaggle.com/alxmamaev/flowers-recognition
+
 
 def main():
     started = datetime.now()
